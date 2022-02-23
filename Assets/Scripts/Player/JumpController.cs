@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+
 public class JumpController : MonoBehaviour
 {
   public float jumpForce = 10f;

@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class CollectJumpBoost : MonoBehaviour
 {
-    public GameObject audioObject;
-    public AudioSource coinFX;
+    //public GameObject audioObject;
+    //public AudioSource coinFX;
 
     // Start
-    void Start()
+   /*void Start()
     {
         audioObject = GameObject.Find("JumpCollect");
-        coinFX = audioObject.GetComponent<AudioSource>();
-    }
+        jumpFX = audioObject.GetComponent<AudioSource>();
+        console.log(""Sta)
+    }*/
     
     void OnTriggerEnter(Collider other)
     {
-        coinFX.Play();
+        //jumpFX.Play();
         JumpController.powerLevel++;
 
         Destroy(gameObject);

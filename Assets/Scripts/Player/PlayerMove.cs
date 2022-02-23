@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Valve.VR;
+
 public class PlayerMove : MonoBehaviour
 {
 
@@ -9,6 +11,8 @@ public class PlayerMove : MonoBehaviour
     public float strafeSpeed = 4f;
 
     public JumpController jumpController;
+
+   //public SteamVR_Action_Boolean jumpAction;
 
     // Start is called before the first frame update
     void Start()
@@ -45,4 +49,5 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
+
 }
