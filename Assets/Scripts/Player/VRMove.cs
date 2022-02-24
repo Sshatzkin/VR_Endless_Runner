@@ -5,6 +5,8 @@ using Valve.VR;
 
 public class VRMove : MonoBehaviour
 {
+    public bool testing_mode;
+
     private Vector2 trackpad;
     private Vector3 moveDirection;
     private int GroundCount;
@@ -14,7 +16,7 @@ public class VRMove : MonoBehaviour
 
     public SteamVR_Action_Vector2 TrackpadAction;
     public SteamVR_Action_Boolean JumpAction;
-    public float jumpHeight;
+
     public float MovementSpeed;
     public float Deadzone; // The Deadzone of the trackpad. used to prevent unwanted walking.
     
@@ -22,40 +24,54 @@ public class VRMove : MonoBehaviour
     public GameObject AxisHand; // Hand Controller GameObject
     public PhysicMaterial NoFrictionMaterial;
     public PhysicMaterial FrictionMaterial;
+
+    public JumpController jumpController;
+
     
     public void Start()
     {
         CapCollider = GetComponent<CapsuleCollider>();
-    }
+    } 
 
     // Update is called once per frame
     void Update()
     {
         updateInput();
         updateCollider();
-
-        moveDirection = Quaternion.AngleAxis(Angle(trackpad) + AxisHand.transform.localRotation.eulerAngles.y, Vector3.up) * Vector3.forward; // Get the angle of the touch and correct it for the rotation of the controller
-
         Rigidbody RBody = GetComponent<Rigidbody>();
-        Vector3 velocity = new Vector3(0, 0, 0);
 
-        if (trackpad.magnitude > Deadzone)
-        {
-            // make sure the touch isn't in the deadzone and we aren't going too fast
-            CapCollider.material = NoFrictionMaterial;
-            velocity = - moveDirection;
+        if (testing_mode){
+             moveDirection = Quaternion.AngleAxis(Angle(trackpad) + AxisHand.transform.localRotation.eulerAngles.y, Vector3.up) * Vector3.forward; // Get the angle of the touch and correct it for the rotation of the controller
+
+            
+            Vector3 velocity = new Vector3(0, 0, 0);
+
+            if (trackpad.magnitude > Deadzone)
+            {
+                // make sure the touch isn't in the deadzone and we aren't going too fast
+                CapCollider.material = NoFrictionMaterial;
+                velocity = - moveDirection;
+                if (JumpAction.GetStateDown(MovementHand) && GroundCount > 0)
+                {
+                    jumpController.jump();
+                }
+                RBody.AddForce(velocity.x*MovementSpeed - RBody.velocity.x, 0, velocity.z*MovementSpeed - RBody.velocity.z, ForceMode.VelocityChange);
+                Debug.Log("Velocity: " + velocity);
+                Debug.Log("Movement Direction: " + moveDirection);
+            }
+            else if (GroundCount > 0){
+                CapCollider.material = FrictionMaterial;
+            }
+        }
+        else {
+            transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
+
             if (JumpAction.GetStateDown(MovementHand) && GroundCount > 0)
             {
-                float jumpSpeed = Mathf.Sqrt(2 * jumpHeight * 9.81f);
-                RBody.AddForce(0, jumpSpeed, 0, ForceMode.VelocityChange);
+                jumpController.jump();
             }
-            RBody.AddForce(velocity.x*MovementSpeed - RBody.velocity.x, 0, velocity.z*MovementSpeed - RBody.velocity.z, ForceMode.VelocityChange);
-            Debug.Log("Velocity: " + velocity);
-            Debug.Log("Movement Direction: " + moveDirection);
         }
-        else if (GroundCount > 0){
-            CapCollider.material = FrictionMaterial;
-        }
+       
     }
 
     public static float Angle (Vector2 p_vector2)
@@ -92,5 +108,11 @@ public class VRMove : MonoBehaviour
     {
         GroundCount--;
     }
+
+    /*private void Jump (Rigidbody RBody)
+    {
+            float jumpSpeed = Mathf.Sqrt(2 * jumpHeight * 9.81f);
+            RBody.AddForce(0, jumpSpeed, 0, ForceMode.VelocityChange);
+    }*/
 }
 

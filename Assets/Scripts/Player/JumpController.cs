@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 
@@ -9,19 +10,20 @@ using UnityEngine.UI;
 public class JumpController : MonoBehaviour
 {
   public float jumpForce = 10f;
-  public bool VRMode = false;
   public float jumpRatio = 1f;
 
-  public float powerLevelBonus = 0.2f;
+  public float powerLevelBonus = 1f;
   public static float powerLevel = 0;
 
-  public Text powerLevelDisplay;
+  public TMP_Text powerLevelDisplay;
+
+  public float jumpHeight;
 
   void Update(){
     //powerLevel = Mathf.Floor(CollectibleController.coinCount / 5);
 
     // Set power level display text
-    powerLevelDisplay.text = "Power Level: " + powerLevel.ToString();
+    powerLevelDisplay.text = powerLevel.ToString();
   }
 
   public void jump()
@@ -30,20 +32,13 @@ public class JumpController : MonoBehaviour
     jumpRatio = 1 + (powerLevel * powerLevelBonus);
     Debug.Log("Jump Ratio: " + jumpRatio);
 
+    float jumpSpeed = Mathf.Sqrt(2 * jumpHeight * 9.81f * jumpRatio);
+    GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.VelocityChange);
 
-    if (VRMode)
-    {
-      // VR Jump things
 
-    }
-    else{
-      // Desktop Jump things
-      
-      
 
-      // Apply Vertical Force
-      GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce * jumpRatio, ForceMode.Impulse);
-    }
+      //GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce * jumpRatio, ForceMode.Impulse);
+    
   }
 
 
