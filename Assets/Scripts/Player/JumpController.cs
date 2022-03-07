@@ -19,6 +19,13 @@ public class JumpController : MonoBehaviour
 
   public float jumpHeight;
 
+  public Transform vrCamera;
+
+  //public Vector3 jump;
+  public bool currentlyJumping;
+
+
+
   void Update(){
     //powerLevel = Mathf.Floor(CollectibleController.coinCount / 5);
 
