@@ -5,7 +5,8 @@ using Valve.VR;
 
 public class VRMove : MonoBehaviour
 {
-    public bool testing_mode;
+    public bool trackpad_mode;
+    public bool trigger_mode;
 
     private Vector2 trackpad;
     private float trigger;
@@ -23,6 +24,7 @@ public class VRMove : MonoBehaviour
     public float Deadzone; // The Deadzone of the trackpad. used to prevent unwanted walking.
     
     public GameObject Head;
+    public GameObject IllusionHead;
     public GameObject AxisHand; // Hand Controller GameObject
     public PhysicMaterial NoFrictionMaterial;
     public PhysicMaterial FrictionMaterial;
@@ -44,7 +46,7 @@ public class VRMove : MonoBehaviour
         
         Rigidbody RBody = GetComponent<Rigidbody>();
 
-        if (testing_mode){
+        if (trackpad_mode){
             
              moveDirection = Quaternion.AngleAxis(Angle(trackpad) + AxisHand.transform.localRotation.eulerAngles.y, Vector3.up) * Vector3.forward; // Get the angle of the touch and correct it for the rotation of the controller
              transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
@@ -71,20 +73,22 @@ public class VRMove : MonoBehaviour
         else { // Not Testing Mode
             transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
 
-            if (JumpAction.GetStateDown(MovementHand) && GroundCount > 0)
-            {
-                jumpController.jump();
+            if (trigger_mode){
+                if (trigger > 0) { //&& GroundCount > 0){
+                    Debug.Log("Jumping");
+                    jumpController.jumpState = 3;
+                    //jumpController.currentlyJumping = true;
+                }
+                else if (trigger == 0 && jumpController.jumpState != 9) {
+                    jumpController.jumpState = 9;
+                    //jumpController.currentlyJumping = false;
+                }
             }
-
-            Debug.Log("Trigger: " + trigger);
-            if (trigger > 0 && GroundCount > 0){
-                playerHeight = Head.transform.localPosition.y;
-                jumpController.currentlyJumping = true;
+            
+            
+            if (! jumpController.currentlyJumping){
+                playerHeight = Head.transform.position.y;
             }
-            else {
-                jumpController.currentlyJumping = false;
-            }
-            Debug.Log("JUMP STATUS: " + jumpController.currentlyJumping);
         }
        
     }
@@ -104,13 +108,14 @@ public class VRMove : MonoBehaviour
 
     private void updateCollider()
     {
-        if (!jumpController.currentlyJumping){
+        /*if (!jumpController.currentlyJumping){
             CapCollider.height = Head.transform.localPosition.y;
-        }
+        }*/
+        CapCollider.height = playerHeight;
         
-        CapCollider.center = new Vector3(Head.transform.localPosition.x, Head.transform.localPosition.y / 2, Head.transform.localPosition.z);
+        CapCollider.center = new Vector3(IllusionHead.transform.localPosition.x, IllusionHead.transform.localPosition.y - (CapCollider.height / 2), IllusionHead.transform.localPosition.z);
     }
-
+    //IllusionHead.transform.localPosition.y - 
 
     private void updateInput()
     {

@@ -1,11 +1,10 @@
 {
   "dependencies": {
     "com.unity.collab-proxy": {
-      "version": "1.13.5",
+      "version": "1.15.12",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "2.0.0",
         "com.unity.services.core": "1.0.1"
       },
       "url": "https://packages.unity.com"
@@ -34,7 +33,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.11",
+      "version": "2.0.14",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -57,13 +56,6 @@
         "com.unity.editorcoroutines": "1.0.0",
         "com.unity.settings-manager": "1.0.2"
       },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.nuget.newtonsoft-json": {
-      "version": "2.0.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.services.core": {
@@ -133,7 +125,7 @@
       }
     },
     "com.unity.xr.arsubsystems": {
-      "version": "4.1.7",
+      "version": "4.1.9",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -161,8 +153,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.management": {
-      "version": "4.0.1",
-      "depth": 0,
+      "version": "4.2.0",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.subsystems": "1.0.0",
@@ -174,17 +166,17 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.oculus": {
-      "version": "1.10.0",
+      "version": "1.11.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.xr.management": "4.0.1",
+        "com.unity.xr.management": "4.2.0",
         "com.unity.ugui": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.windowsmr": {
-      "version": "4.6.0",
+      "version": "4.6.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {

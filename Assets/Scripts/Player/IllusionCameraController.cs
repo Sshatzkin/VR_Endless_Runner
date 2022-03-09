@@ -18,20 +18,26 @@ public class IllusionCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(vrCamera.position);
+        // Side to side "stretching"
+        float rig_offset = 6.0f;
+        float x_offset_ratio = 2.0f; // This alters how much we extend the player's side-to-side movement
+        float new_x = (vrCamera.position.x - rig_offset) * x_offset_ratio + rig_offset;
         if (jumpScript.currentlyJumping)
         {
-            //if (vrCamera.position.y > jumpScript.startingHeight)
-            //{
-                float heightOffset = (vrCamera.position.y - moveScript.playerHeight) * heightRatio;
-                float newHeight = vrCamera.position.y + heightOffset;
-                transform.position = new Vector3(vrCamera.position.x, newHeight, vrCamera.position.z);
-            //}
+
+            float heightOffset = (vrCamera.position.y - moveScript.playerHeight) * jumpScript.jumpRatio;
+
+            float newHeight = moveScript.playerHeight + heightOffset;//vrCamera.position.y + heightOffset;
+            //Debug.Log("vrCamera.position.x: " + vrCamera.position.x);
+            //Debug.Log("Illusion Pos: " + (vrCamera.position.x * x_offset_ratio));
+            transform.position = new Vector3(new_x, newHeight, vrCamera.position.z);
 
         }
         else
         {
-            transform.position = vrCamera.position;
+            //Debug.Log("vrCamera.position.x: " + vrCamera.position.x);
+            //Debug.Log("Illusion Pos: " + (vrCamera.position.x * x_offset_ratio));
+            transform.position = new Vector3(new_x, vrCamera.position.y, vrCamera.position.z);
         }
         
         transform.rotation = vrCamera.rotation;

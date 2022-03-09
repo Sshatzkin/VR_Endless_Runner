@@ -24,15 +24,24 @@ public class JumpController : MonoBehaviour
   //public Vector3 jump;
   public bool currentlyJumping;
 
+  public int jumpState;
 
 
   void Update(){
-    //powerLevel = Mathf.Floor(CollectibleController.coinCount / 5);
 
     // Set power level display text
     powerLevelDisplay.text = powerLevel.ToString();
+    jumpRatio = powerLevel + 1;
+
+    if (jumpState >= 3 && jumpState < 8){
+      currentlyJumping = true;
+    }
+    else {
+      currentlyJumping = false;
+    }
   }
 
+  // This function uses jump physics
   public void jump()
   {
     Debug.Log("Power Level: " + powerLevel);

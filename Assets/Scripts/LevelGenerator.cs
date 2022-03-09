@@ -41,7 +41,7 @@ public class LevelGenerator : MonoBehaviour
         }
         //Quaternion rotation = new Quaternion (0, y_rotation, 0, 1);
         
-        GameObject newSection = Instantiate(segments[seg_number], new Vector3(x_offset, 0, zPos), Quaternion.identity);//rotation);
+        GameObject newSection = Instantiate(segments[seg_number], new Vector3(x_offset, -0.6f, zPos), Quaternion.identity);//rotation);
         newSection.transform.eulerAngles = new Vector3(0, y_rotation, 0);
 
         zPos += tileWidth;
