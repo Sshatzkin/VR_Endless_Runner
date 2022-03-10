@@ -9,6 +9,9 @@ public class IllusionCameraController : MonoBehaviour
     public VRMove moveScript;
     public float heightRatio = 1;
 
+    public float x_offset_ratio = 2.0f; // This alters how much we extend the player's side-to-side movement
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,6 @@ public class IllusionCameraController : MonoBehaviour
     {
         // Side to side "stretching"
         float rig_offset = 6.0f;
-        float x_offset_ratio = 2.0f; // This alters how much we extend the player's side-to-side movement
         float new_x = (vrCamera.position.x - rig_offset) * x_offset_ratio + rig_offset;
         if (jumpScript.currentlyJumping)
         {

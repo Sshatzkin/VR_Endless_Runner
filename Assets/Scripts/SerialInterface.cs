@@ -56,7 +56,7 @@ public class SerialInterface : MonoBehaviour
                 Debug.Log("incomingMsg: " + incomingMsg);
 
                 if (incomingMsg.Length >= 15) // Check if the incoming message is of the form "Jump Status = _"           
-                    jumpcontroller.jumpState = (int)Char.GetNumericValue(incomingMsg[14]);
+                    jumpcontroller.updateJumpState((int)Char.GetNumericValue(incomingMsg[14]));
                     Debug.Log("JumpState = " + jumpcontroller.jumpState);
 
             }

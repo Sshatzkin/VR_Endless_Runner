@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,12 @@ public class JumpController : MonoBehaviour
 
   public int jumpState;
 
+  public AudioSource runSFX;
+  public AudioSource jumpSFX;
+
+  bool jumpAudioPlaying = false;
+
+  public static event Action<int> OnJumpStateChanged;
 
   void Update(){
 
@@ -33,13 +40,51 @@ public class JumpController : MonoBehaviour
     powerLevelDisplay.text = powerLevel.ToString();
     jumpRatio = powerLevel + 1;
 
-    if (jumpState >= 3 && jumpState < 8){
+    /*if (jumpState >= 3 && jumpState < 8){
       currentlyJumping = true;
+      
+      if (! jumpAudioPlaying){
+        runSFX.Stop();
+        jumpSFX.Play();
+        jumpAudioPlaying = true;
+      }
     }
+
     else {
+      if (jumpAudioPlaying){
+        runSFX.Play();
+        jumpAudioPlaying = false;
+      }
       currentlyJumping = false;
-    }
+      
+    }*/
   }
+
+   public void updateJumpState (int newState){
+        jumpState = newState;
+
+        switch (newState){
+            case 1:
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+              currentlyJumping = true;
+              runSFX.Stop();
+              jumpSFX.Play();
+              break;
+
+            case 8:
+            case 9:
+              currentlyJumping = false;
+              runSFX.Play();
+              break;
+        }
+        OnJumpStateChanged?.Invoke(newState);
+    }
+
 
   // This function uses jump physics
   public void jump()
@@ -59,3 +104,5 @@ public class JumpController : MonoBehaviour
 
 
 }
+
+

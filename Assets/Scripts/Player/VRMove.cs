@@ -20,7 +20,10 @@ public class VRMove : MonoBehaviour
     public SteamVR_Action_Boolean JumpAction;
     public SteamVR_Action_Single TriggerSqueeze;
 
+    public float InitialMovementSpeed; // Used on start and to calculate movement speed
     public float MovementSpeed;
+    public float maxSpeed;
+    public float speedIncreaseRatio; // Used to calculate increased movement speed over time
     public float Deadzone; // The Deadzone of the trackpad. used to prevent unwanted walking.
     
     public GameObject Head;
@@ -33,10 +36,30 @@ public class VRMove : MonoBehaviour
 
     public float playerHeight = 0;
     
+    void Awake() {
+        // Subscribe to game state change (this is used for start menu)
+        GameManager.OnGameStateChanged += OnOnGameStateChanged;
+    }
     public void Start()
     {
         CapCollider = GetComponent<CapsuleCollider>();
     } 
+
+    public void OnDestroy(){
+        GameManager.OnGameStateChanged -= OnOnGameStateChanged;
+    }
+
+
+    private void OnOnGameStateChanged (GameState obj){
+        switch (obj){
+            case GameState.StartMenu:
+                MovementSpeed = 0;
+                break;
+            case GameState.Running:
+                MovementSpeed = InitialMovementSpeed;
+                break;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -71,26 +94,47 @@ public class VRMove : MonoBehaviour
             }
         }
         else { // Not Testing Mode
+
             transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
 
-            if (trigger_mode){
-                if (trigger > 0) { //&& GroundCount > 0){
-                    Debug.Log("Jumping");
-                    jumpController.jumpState = 3;
-                    //jumpController.currentlyJumping = true;
-                }
-                else if (trigger == 0 && jumpController.jumpState != 9) {
-                    jumpController.jumpState = 9;
-                    //jumpController.currentlyJumping = false;
+            if (GameManager.Instance.State == GameState.StartMenu ){
+                if (trigger > 0){
+                    Debug.Log("Starting Game");
+                    GameManager.Instance.updateGameState(GameState.Running);
                 }
             }
-            
+            else {
+                MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
+
+                if (trigger_mode){
+                    if (trigger > 0 && (jumpController.jumpState != 3)) { //&& GroundCount > 0){
+                        Debug.Log("Jumping");
+                        jumpController.updateJumpState(3);
+                        //jumpController.currentlyJumping = true;
+                    }
+                    else if (trigger == 0 && jumpController.jumpState != 9) {
+                        jumpController.updateJumpState(9);
+                        //jumpController.currentlyJumping = false;
+                    }
+                }
+            }
             
             if (! jumpController.currentlyJumping){
                 playerHeight = Head.transform.position.y;
             }
         }
        
+    }
+
+    /*
+        This function uses logistic function of the form:
+        f(x) = c / 1 + ae^(-kx)
+
+        With setting c = 20, a = 4, k = 0.01,  it starts at 4 movespeed and takes about 5 mins to get to 20
+
+    */
+    public float timeToSpeed(float initialMS, float time, float timeSpeedRatio, float maxSpeed){
+        return maxSpeed / (1 + (initialMS * Mathf.Exp(- timeSpeedRatio * time)));
     }
 
     public static float Angle (Vector2 p_vector2)
