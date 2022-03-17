@@ -40,7 +40,7 @@ public class SerialInterface : MonoBehaviour
                 Debug.Log(ports[i]);
             }
 
-        sp.ReadTimeout = 30;
+        sp.ReadTimeout = 10;
         sp.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
         sp.Open();
     }
