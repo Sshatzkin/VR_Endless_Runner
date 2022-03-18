@@ -8,13 +8,18 @@ public class CollectibleController : MonoBehaviour
 {
     public static int coinCount = 0;
 
+    public static int pumkinCount = 0;
+
     public TMP_Text coinCountDisplay;
+
+    public TMP_Text pumpkinCountDisplay;
 
     // Update is called once per frame
     void Update()
     {
 
         coinCountDisplay.text = coinCount.ToString();
+        pumpkinCountDisplay.text = coinCount.ToString();
 
     }
 }

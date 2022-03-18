@@ -16,7 +16,11 @@ public class JumpController : MonoBehaviour
   public float powerLevelBonus = 1f;
   public static float powerLevel = 0;
 
+  public static float smashPower = 0;
+
   public TMP_Text powerLevelDisplay;
+
+  public TMP_Text smashPowerDisplay;
 
   public float jumpHeight;
 
@@ -39,6 +43,15 @@ public class JumpController : MonoBehaviour
     // Set power level display text
     powerLevelDisplay.text = powerLevel.ToString();
     jumpRatio = powerLevel + 1;
+
+    if (smashPower == 0){
+      smashPowerDisplay.text = "OFF";
+      smashPowerDisplay.color = Color.red;
+    }
+    else{
+      smashPowerDisplay.text = "ON";
+      smashPowerDisplay.color = Color.green;
+    }
 
     /*if (jumpState >= 3 && jumpState < 8){
       currentlyJumping = true;
