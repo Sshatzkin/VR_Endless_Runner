@@ -7,6 +7,7 @@ public class VRMove : MonoBehaviour
 {
     public bool trackpad_mode;
     public bool trigger_mode;
+    public bool keyboard_mode;
 
     private Vector2 trackpad;
     private float trigger;
@@ -95,32 +96,97 @@ public class VRMove : MonoBehaviour
         }
         else { // Not Testing Mode
 
-            transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
+            if (keyboard_mode)
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
 
-            if (GameManager.Instance.State == GameState.StartMenu ){
-                if (trigger > 0){
-                    Debug.Log("Starting Game");
-                    GameManager.Instance.updateGameState(GameState.Running);
-                }
-            }
-            else {
-                MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
-
-                if (trigger_mode){
-                    if (trigger > 0 && (jumpController.jumpState != 3)) { //&& GroundCount > 0){
-                        Debug.Log("Jumping");
-                        jumpController.updateJumpState(3);
-                        //jumpController.currentlyJumping = true;
-                    }
-                    else if (trigger == 0 && jumpController.jumpState != 9) {
-                        jumpController.updateJumpState(9);
-                        //jumpController.currentlyJumping = false;
+                if (GameManager.Instance.State == GameState.StartMenu)
+                {
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        Debug.Log("Starting Game");
+                        GameManager.Instance.updateGameState(GameState.Running);
                     }
                 }
+                else
+                {
+                    MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
+
+                    // Left / Right movement
+                    if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+                    {
+                        if (this.gameObject.transform.position.x > LevelBoundary.leftSide)
+                        {
+                            transform.Translate(Vector3.left * Time.deltaTime * 2, Space.World);
+                        }
+
+                    }
+                    if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+                    {
+                        if (this.gameObject.transform.position.x < LevelBoundary.rightSide)
+                        {
+                            transform.Translate(Vector3.right * Time.deltaTime * 2, Space.World);
+                        }
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        if (trigger > 0 && (jumpController.jumpState != 3))
+                        { //&& GroundCount > 0){
+                            Debug.Log("Jumping");
+                            jumpController.updateJumpState(3);
+                            //jumpController.currentlyJumping = true;
+                        }
+                        else if (trigger == 0 && jumpController.jumpState != 9)
+                        {
+                            jumpController.updateJumpState(9);
+                            //jumpController.currentlyJumping = false;
+                        }
+                    }
+                }
+
+                if (!jumpController.currentlyJumping)
+                {
+                    playerHeight = Head.transform.position.y;
+                }
             }
-            
-            if (! jumpController.currentlyJumping){
-                playerHeight = Head.transform.position.y;
+
+            else
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
+
+                if (GameManager.Instance.State == GameState.StartMenu)
+                {
+                    if (trigger > 0)
+                    {
+                        Debug.Log("Starting Game");
+                        GameManager.Instance.updateGameState(GameState.Running);
+                    }
+                }
+                else
+                {
+                    MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
+
+                    if (trigger_mode)
+                    {
+                        if (trigger > 0 && (jumpController.jumpState != 3))
+                        { //&& GroundCount > 0){
+                            Debug.Log("Jumping");
+                            jumpController.updateJumpState(3);
+                            //jumpController.currentlyJumping = true;
+                        }
+                        else if (trigger == 0 && jumpController.jumpState != 9)
+                        {
+                            jumpController.updateJumpState(9);
+                            //jumpController.currentlyJumping = false;
+                        }
+                    }
+                }
+
+                if (!jumpController.currentlyJumping)
+                {
+                    playerHeight = Head.transform.position.y;
+                }
             }
         }
        
