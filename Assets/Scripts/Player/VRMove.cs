@@ -39,7 +39,7 @@ public class VRMove : MonoBehaviour
     float velocity;
 
     // How long the object should shake for.
-    public float shakeDuration = 0f;
+    public static float shakeDuration = 0f;
 
     // Amplitude of the shake. A larger value shakes the camera harder.
     public float shakeAmount = 0.7f;
@@ -270,11 +270,11 @@ public class VRMove : MonoBehaviour
         GroundCount++;
 
         if (collision.gameObject.tag == "Obstacle")
-        {
+        {          
             //If the GameObject has the same tag as specified, output this message in the console
-            Debug.Log("Obstacle collided!");
+            Debug.Log("Player collided with: " + collision.gameObject.name);
             shakeDuration = 1.5f;
-            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), true);
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), true); // bypass all obstacles collider
         }
     }
 
@@ -282,7 +282,7 @@ public class VRMove : MonoBehaviour
     {
         GroundCount--;
         if (shakeDuration <= 0){
-            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), false);
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), false); // restore all obstacles collider
             transform.rotation = originalRotation; 
         }
     }
