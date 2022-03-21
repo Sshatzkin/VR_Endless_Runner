@@ -34,10 +34,21 @@ public class VRMove : MonoBehaviour
     public PhysicMaterial FrictionMaterial;
 
     public JumpController jumpController;
+    public CameraShake cameraShake;
 
     public float playerHeight = 0;
     float velocity;
-    
+
+    // How long the object should shake for.
+    public float shakeDuration = 0f;
+
+    // Amplitude of the shake. A larger value shakes the camera harder.
+    public float shakeAmount = 0.7f;
+    public float decreaseFactor = 1.0f;
+
+    public Vector3 originalPos;
+    public Quaternion originalRotation;
+
     void Awake() {
         // Subscribe to game state change (this is used for start menu)
         GameManager.OnGameStateChanged += OnOnGameStateChanged;
@@ -149,7 +160,7 @@ public class VRMove : MonoBehaviour
                     }
                 }
 
-                transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
+                //transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
 
                 if (!jumpController.currentlyJumping)
                 {
@@ -195,7 +206,29 @@ public class VRMove : MonoBehaviour
                 }
             }
         }
-       
+
+        
+        if (shakeDuration > 0)
+        {
+            Debug.Log("Shake camera");
+            //transform.Translate(new Vector3(originalPos.x + Random.insideUnitSphere * shakeAmount,
+            //                                originalPos.y + Random.insideUnitSphere * shakeAmount,
+            //                                originalPos.z * Time.deltaTime * MovementSpeed));
+            transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+            transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
+            originalPos = transform.localPosition;
+
+            //transform.rotation = originalRotation + Random.insideUnitSphere * shakeAmount;
+
+            shakeDuration -= Time.deltaTime * decreaseFactor;
+        }
+        else
+        {
+            originalPos = transform.localPosition;
+            originalRotation = transform.localRotation;
+
+            cameraShake.shakeDuration = 0f;
+        }
     }
 
     /*
@@ -242,11 +275,20 @@ public class VRMove : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GroundCount++;
+
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            //If the GameObject has the same tag as specified, output this message in the console
+            Debug.Log("Obstacle collided!");
+            //shakeDuration = 2f;
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), true);
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
         GroundCount--;
+        Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), false);
     }
 
     /*private void Jump (Rigidbody RBody)
