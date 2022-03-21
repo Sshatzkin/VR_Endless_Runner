@@ -279,6 +279,11 @@ public class VRMove : MonoBehaviour
             shakeDuration = 1.5f;
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), true); // bypass all obstacles collider
         }
+
+        if (collision.gameObject.name == "Ground Plane")
+        {
+            Debug.Log("Landng on the ground!!");
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -288,6 +293,8 @@ public class VRMove : MonoBehaviour
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), false); // restore all obstacles collider
             transform.rotation = originalRotation; 
         }
+
+        
     }
 
     /*private void Jump (Rigidbody RBody)
