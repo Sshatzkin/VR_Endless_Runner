@@ -34,7 +34,6 @@ public class VRMove : MonoBehaviour
     public PhysicMaterial FrictionMaterial;
 
     public JumpController jumpController;
-    public CameraShake cameraShake;
 
     public float playerHeight = 0;
     float velocity;
@@ -208,26 +207,20 @@ public class VRMove : MonoBehaviour
         }
 
         
-        if (shakeDuration > 0)
+        if (shakeDuration > 0) // will need to check if is jumping or not by checking jump state
         {
-            Debug.Log("Shake camera");
-            //transform.Translate(new Vector3(originalPos.x + Random.insideUnitSphere * shakeAmount,
-            //                                originalPos.y + Random.insideUnitSphere * shakeAmount,
-            //                                originalPos.z * Time.deltaTime * MovementSpeed));
-            transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
-            transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
-            originalPos = transform.localPosition;
-
-            //transform.rotation = originalRotation + Random.insideUnitSphere * shakeAmount;
+            // shake camera by rotating camera
+            transform.rotation = originalRotation * Quaternion.Euler(Random.Range(-2,2),Random.Range(-2,2),0);
+            InitialMovementSpeed = 10;
 
             shakeDuration -= Time.deltaTime * decreaseFactor;
         }
         else
         {
-            originalPos = transform.localPosition;
+            // used to restore angle
             originalRotation = transform.localRotation;
-
-            cameraShake.shakeDuration = 0f;
+            InitialMovementSpeed = 4;
+            shakeDuration = 0f;
         }
     }
 
@@ -280,7 +273,7 @@ public class VRMove : MonoBehaviour
         {
             //If the GameObject has the same tag as specified, output this message in the console
             Debug.Log("Obstacle collided!");
-            //shakeDuration = 2f;
+            shakeDuration = 1.5f;
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), true);
         }
     }
@@ -288,7 +281,10 @@ public class VRMove : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         GroundCount--;
-        Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), false);
+        if (shakeDuration <= 0){
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), false);
+            transform.rotation = originalRotation; 
+        }
     }
 
     /*private void Jump (Rigidbody RBody)
