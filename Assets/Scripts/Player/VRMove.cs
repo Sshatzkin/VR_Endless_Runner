@@ -21,7 +21,7 @@ public class VRMove : MonoBehaviour
     public SteamVR_Action_Boolean JumpAction;
     public SteamVR_Action_Single TriggerSqueeze;
 
-    public float InitialMovementSpeed; // Used on start and to calculate movement speed
+    public static float InitialMovementSpeed; // Used on start and to calculate movement speed
     public float MovementSpeed;
     public float maxSpeed;
     public float speedIncreaseRatio; // Used to calculate increased movement speed over time
@@ -214,6 +214,9 @@ public class VRMove : MonoBehaviour
             InitialMovementSpeed = 10;
 
             shakeDuration -= Time.deltaTime * decreaseFactor;
+        }
+        else if(MudFX.walkingOnMud){
+            InitialMovementSpeed = 10;
         }
         else
         {
