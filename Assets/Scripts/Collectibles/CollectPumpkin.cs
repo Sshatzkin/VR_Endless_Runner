@@ -24,11 +24,13 @@ public class CollectPumpkin : MonoBehaviour
             pumpkinFX.Play();
             CollectibleController.pumpkinCount++;
             Destroy(gameObject);
+            Debug.Log("Pumpkin smashed");
         }
         else{
             // no powerup, consider this as normal obstacle
             VRMove.shakeDuration = 1.5f;
             Physics.IgnoreCollision(other, GetComponent<Collider>(), true);
+            Debug.Log("No Pumpkin smashed");
         }
     }
 }
