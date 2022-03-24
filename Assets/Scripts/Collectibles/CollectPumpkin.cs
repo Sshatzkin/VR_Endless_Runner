@@ -9,6 +9,7 @@ public class CollectPumpkin : MonoBehaviour
 
     public JumpController jumpController;
 
+    public ArduinoController arduino;
 
     // Start
     void Start()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System;
 
 using UnityEngine;
@@ -19,16 +20,61 @@ public class SerialInterface : MonoBehaviour
      */
     public int jumparActive = 0;
 
-    public string serialport = "COM12";
+    public string serialport = "\\\\.\\COM13"; // "\\\\.\\" needed if COM > 9
 
     float next_time;
 
     private static string incomingMsg;
 
     SerialPort sp;
+
+    private Thread spReadingThread;
+    private bool looping;
     float jumpTime = -1;
-    // Start is called before the first frame update
-    void Start()
+
+    // Update is called once per frame
+    // void Update()
+    // {
+    //     if (sp.IsOpen)
+    //     {
+    //         try
+    //         {
+    //             incomingMsg = sp.ReadLine();
+    //             Debug.Log("incomingMsg: " + incomingMsg);
+
+    //             if (incomingMsg.Length >= 15) // Check if the incoming message is of the form "Jump Status = _"           
+    //                 jumpcontroller.updateJumpState((int)Char.GetNumericValue(incomingMsg[14]));
+    //                 Debug.Log("JumpState = " + jumpcontroller.jumpState);
+
+    //         }
+    //         catch (Exception e)
+    //         {
+    //             Debug.Log("Serial Error: " + e);
+    //         }
+    //         // catch (TimeoutException)
+    //         // {
+    //         //     Debug.Log("TimeoutException");
+    //         // }
+    //     }
+    // }
+    
+    private void OnEnable()
+    {
+        looping = true;
+        spReadingThread = new Thread(ReadArduino);
+        spReadingThread.Start();
+    }
+
+    private void OnDestroy()
+    {
+        looping = false;  // This is a necessary command to stop the thread.
+                        // if you comment this line, Unity gets frozen when you stop the game in the editor.                           
+        spReadingThread.Join();
+        spReadingThread.Abort();
+        sp.Close();
+    }
+
+    void ReadArduino()
     {
         Debug.Log("START");
         sp = new SerialPort(serialport, 9600);
@@ -40,31 +86,43 @@ public class SerialInterface : MonoBehaviour
                 Debug.Log(ports[i]);
             }
 
-        sp.ReadTimeout = 10;
+        sp.ReadTimeout = 500;
+        sp.WriteTimeout = 1000;
+        sp.Handshake = Handshake.None;
+        sp.DtrEnable = true;
+        sp.WriteTimeout = 1000;
+        sp.Parity = Parity.None;
+        sp.StopBits = StopBits.One;
+        sp.DataBits = 8;
+        sp.NewLine = "\n";
         sp.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
         sp.Open();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (sp.IsOpen)
-        {
+        if(sp.IsOpen){
+            Debug.Log("Serial started");
+        }
+
+        // init backpack
+        ArduinoSetMode();
+        ArduinoDisarm();
+        ArduinoSetWeightBottom();
+
+        // main serial loop
+        while (looping)
+        {   
             try
             {
-                incomingMsg = sp.ReadLine();
-                Debug.Log("incomingMsg: " + incomingMsg);
-
-                if (incomingMsg.Length >= 15) // Check if the incoming message is of the form "Jump Status = _"           
-                    jumpcontroller.updateJumpState((int)Char.GetNumericValue(incomingMsg[14]));
-                    Debug.Log("JumpState = " + jumpcontroller.jumpState);
-
+                // incomingMsg = sp.ReadLine();
+                // Debug.Log("Serial Incoming: " + incomingMsg);
+                Thread.Sleep(0);
             }
-            catch (TimeoutException)
+            catch (Exception e)
             {
-                //Debug.Log("TimeoutException");
+                Debug.Log("Serial error: " + e);
             }
+            
         }
+
     }
 
     private static void DataReceivedHandler(
@@ -82,4 +140,47 @@ public class SerialInterface : MonoBehaviour
         sp.WriteLine(message);
         sp.BaseStream.Flush();
     }
+
+    public void ArduinoSetMode()
+    {
+        string arduinoMsg = "<c,a>";
+        WriteToSerial(arduinoMsg);
+    }
+
+    public void ArduinoArm()
+    {
+        string arduinoMsg = "<p,1>";
+        WriteToSerial(arduinoMsg);
+    }
+
+    public void ArduinoDisarm()
+    {
+        string arduinoMsg = "<p,0>";
+        WriteToSerial(arduinoMsg);
+    }
+
+    public void ArduinoSetDCTime(int dutyCycle, int driveTime)
+    {
+        string arduinoMsg = "<s," + dutyCycle + "," + driveTime + ">";
+        WriteToSerial(arduinoMsg); 
+    }
+
+    public void ArduinoSendManual(int dutyCycle, int driveTime)
+    {
+        string arduinoMsg = "<" + dutyCycle + "," + driveTime + ">";
+        WriteToSerial(arduinoMsg); 
+    }
+
+    public void ArduinoSetWeightTop()
+    {
+        string arduinoMsg = "<-.1, 1500>";
+        WriteToSerial(arduinoMsg); 
+    }
+
+    public void ArduinoSetWeightBottom()
+    {
+        string arduinoMsg = "<.1, 2000>";
+        WriteToSerial(arduinoMsg); 
+    }
+    
 }

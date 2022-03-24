@@ -36,7 +36,6 @@ public class VRMove : MonoBehaviour
     public JumpController jumpController;
 
     public float playerHeight = 0;
-    float velocity;
 
     // How long the object should shake for.
     public static float shakeDuration = 0f;
@@ -110,7 +109,6 @@ public class VRMove : MonoBehaviour
             if (keyboard_mode)
             {
                 transform.Translate(Vector3.forward * Time.deltaTime * MovementSpeed, Space.World);
-                velocity += -9.81f * Time.deltaTime;
 
                 if (GameManager.Instance.State == GameState.StartMenu)
                 {
@@ -143,8 +141,6 @@ public class VRMove : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        velocity = 20;
-                        jumpController.jump();
                         if (trigger > 0 && (jumpController.jumpState != 3))
                         { //&& GroundCount > 0){
                             Debug.Log("Jumping");
@@ -215,7 +211,7 @@ public class VRMove : MonoBehaviour
 
             shakeDuration -= Time.deltaTime * decreaseFactor;
         }
-        else if(MudFX.walkingOnMud){
+        else if (MudFX.walkingOnMud){
             InitialMovementSpeed = 10;
         }
         else
