@@ -13,9 +13,6 @@ public class DetectionPumpkin : MonoBehaviour
         Physics.IgnoreCollision(other, GetComponent<Collider>(), true);
         if (JumpController.smashPower > 0)
         {
-            arduino.SetWeightTop();
-            arduino.SetDCTime(50, 150);
-            arduino.SetDriveTime(6,8);
             arduino.Arm();
             Debug.Log("Pumpkin detection zone");
         }

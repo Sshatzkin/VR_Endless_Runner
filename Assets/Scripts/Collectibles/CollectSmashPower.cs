@@ -7,6 +7,8 @@ public class CollectSmashPower : MonoBehaviour
     public GameObject audioObject;
     public AudioSource boostFX;
 
+    public ArduinoController arduino;
+
     // Start
    void Start()
     {
@@ -18,7 +20,9 @@ public class CollectSmashPower : MonoBehaviour
     {
         boostFX.Play();
         JumpController.smashPower++;
-
+        arduino.SetWeightTop();
+        arduino.SetDCTime(50, 150);
+        arduino.SetDriveTime(6,8);
         Destroy(gameObject);
         
     }

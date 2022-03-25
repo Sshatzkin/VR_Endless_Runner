@@ -7,6 +7,8 @@ public class MudFX : MonoBehaviour
     public GameObject audioObject;
     public AudioSource mudFX;
 
+    public ParticleSystem mudPS;
+
     public JumpController jumpController;
 
     public static bool walkingOnMud = false;
@@ -24,9 +26,15 @@ public class MudFX : MonoBehaviour
         Debug.Log("Walking on mud");
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        mudPS.Play();
+    }
+
     void OnTriggerExit(Collider other)
     {
         mudFX.Stop();
+        mudPS.Stop();
         walkingOnMud = false;
     }
 }

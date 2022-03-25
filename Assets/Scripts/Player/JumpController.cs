@@ -42,7 +42,18 @@ public class JumpController : MonoBehaviour
 
     // Set power level display text
     powerLevelDisplay.text = powerLevel.ToString();
-    jumpRatio = powerLevel + 1;
+    
+    if (powerLevel == 0){
+      smashPowerDisplay.text = "OFF";
+      smashPowerDisplay.color = Color.red;
+    }
+    else{
+      smashPowerDisplay.text = "ON";
+      smashPowerDisplay.color = Color.green;
+      jumpRatio = 10;
+    }
+
+    // jumpRatio = powerLevel + 1;
 
     if (smashPower == 0){
       smashPowerDisplay.text = "OFF";

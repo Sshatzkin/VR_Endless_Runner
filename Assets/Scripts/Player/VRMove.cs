@@ -45,6 +45,10 @@ public class VRMove : MonoBehaviour
     public float decreaseFactor = 1.0f;
     public Quaternion originalRotation;         // Store camera rotation before shaking
 
+    // Vibration haptics stuff
+    public float next_time;
+    public bool flip = false;
+
     void Awake() {
         // Subscribe to game state change (this is used for start menu)
         GameManager.OnGameStateChanged += OnOnGameStateChanged;
@@ -210,7 +214,13 @@ public class VRMove : MonoBehaviour
             shakeDuration -= Time.deltaTime * decreaseFactor;
 
             // haptic feedback 
-            // arduino.VibrationStart(0.2f); //vibration not working
+            if (Time.time > next_time) { 
+                if (flip) arduino.SendManual(-.1f, 50);
+                else arduino.SendManual(.1f, 50);
+                flip = !flip;
+                next_time = Time.time + 0.05f;
+                Debug.Log("Flipping! " + next_time);
+        }
         }
         else if (MudFX.walkingOnMud){
             InitialMovementSpeed = 10; // slow down speed of player
