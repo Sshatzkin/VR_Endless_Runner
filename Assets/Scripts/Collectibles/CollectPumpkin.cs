@@ -20,7 +20,7 @@ public class CollectPumpkin : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        if (JumpController.smashPower > 0) //&& jumpController.jumpState >=3 && jumpController.jumpState < 9)
+        if (JumpController.smashPower > 0 && jumpController.jumpState >=3 && jumpController.jumpState < 9)
         {
             pumpkinFX.Play();
             CollectibleController.pumpkinCount++;
@@ -33,5 +33,10 @@ public class CollectPumpkin : MonoBehaviour
             Physics.IgnoreCollision(other, GetComponent<Collider>(), true);
             Debug.Log("No Pumpkin smashed");
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        // arduino.Disarm();
     }
 }

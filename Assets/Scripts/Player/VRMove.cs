@@ -35,17 +35,15 @@ public class VRMove : MonoBehaviour
 
     public JumpController jumpController;
 
+    public ArduinoController arduino; 
+
     public float playerHeight = 0;
 
-    // How long the object should shake for.
-    public static float shakeDuration = 0f;
-
-    // Amplitude of the shake. A larger value shakes the camera harder.
-    public float shakeAmount = 0.7f;
+    // Camera shake variables
+    public static float shakeDuration = 0f;     // How long the object should shake for.
+    public float shakeAmount = 2f;              // Amplitude of the shake. A larger value shakes the camera harder.
     public float decreaseFactor = 1.0f;
-
-    public Vector3 originalPos;
-    public Quaternion originalRotation;
+    public Quaternion originalRotation;         // Store camera rotation before shaking
 
     void Awake() {
         // Subscribe to game state change (this is used for start menu)
@@ -206,19 +204,22 @@ public class VRMove : MonoBehaviour
         if (shakeDuration > 0) // will need to check if is jumping or not by checking jump state
         {
             // shake camera by rotating camera
-            transform.rotation = originalRotation * Quaternion.Euler(Random.Range(-2,2),Random.Range(-2,2),0);
-            InitialMovementSpeed = 10;
+            transform.rotation = originalRotation * Quaternion.Euler(Random.Range(-shakeAmount,shakeAmount),Random.Range(-shakeAmount,shakeAmount),0);
+            InitialMovementSpeed = 10; // slow down speed of player
 
             shakeDuration -= Time.deltaTime * decreaseFactor;
+
+            // haptic feedback 
+            // arduino.VibrationStart(0.2f); //vibration not working
         }
         else if (MudFX.walkingOnMud){
-            InitialMovementSpeed = 10;
+            InitialMovementSpeed = 10; // slow down speed of player
         }
         else
         {
             // used to restore angle
             originalRotation = transform.localRotation;
-            InitialMovementSpeed = 4;
+            InitialMovementSpeed = 4; // restore speed of player
             shakeDuration = 0f;
         }
     }
