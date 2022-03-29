@@ -11,7 +11,7 @@ public class SetWeightTop : MonoBehaviour
     {
         // Makes sure this gets triggered only once and avoids getting stuck in collision
         // Physics.IgnoreCollision(other, GetComponent<Collider>(), true);
-        arduino.SendManual(-.3f, 1000);
+        // arduino.SendManual(-.3f, 1000);
     }
 
     // void OnTriggerExit(Collider other)

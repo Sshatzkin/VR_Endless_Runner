@@ -20,7 +20,8 @@ public class CollectSmashPower : MonoBehaviour
     {
         boostFX.Play();
         JumpController.smashPower++;
-        arduino.SetWeightTop();
+        // arduino.SetWeightTop();
+        arduino.SendManual(-.3f, 1000);
         arduino.SetDCTime(50, 150);
         arduino.SetDriveTime(6,8);
         Destroy(gameObject);
