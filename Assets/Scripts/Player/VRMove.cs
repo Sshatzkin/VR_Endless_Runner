@@ -279,7 +279,11 @@ public class VRMove : MonoBehaviour
     {
         GroundCount++;
 
-        if (collision.gameObject.tag == "Obstacle")
+        if (collision.gameObject.tag == "Obstacle" && jumpController.jumpState >= 3 && jumpController.jumpState < 9) // deadzone for jumping and colliding with obstacle
+        {
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), true); // bypass all obstacles collider
+        }
+        else if (collision.gameObject.tag == "Obstacle")
         {          
             //If the GameObject has the same tag as specified, output this message in the console
             Debug.Log("Player collided with: " + collision.gameObject.name);

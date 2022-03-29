@@ -9,6 +9,10 @@ public class WindController : MonoBehaviour
 
     public ParticleSystem wind;
 
+    public JumpController jumpController;
+
+    public ArduinoController arduino;
+
     // Start
     void Start()
     {
@@ -18,7 +22,15 @@ public class WindController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (true) // jumpController.jumpState >=3 && jumpController.jumpState < 9)
+        arduino.SetWeightTop();
+        arduino.SetDCTime(50, 150);
+        arduino.SetDriveTime(8,10);
+        arduino.Arm();
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (jumpController.jumpState >= 6)
         {
             Debug.Log("Wind zone entered");
             CreateWind();
