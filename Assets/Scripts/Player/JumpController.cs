@@ -10,84 +10,102 @@ using TMPro;
 
 public class JumpController : MonoBehaviour
 {
-  public float jumpForce = 10f;
-  public float jumpRatio = 1f;
+    public float jumpForce = 10f;
+    public float jumpRatio = 1f;
 
-  public float powerLevelBonus = 1f;
-  public static float powerLevel = 0;
+    public float powerLevelBonus = 1f;
+    public static float powerLevel = 0;
+    public static float powerLevelTimer = 15f; // roughly the same as the detection zone
 
-  public static float smashPower = 0;
 
-  public TMP_Text powerLevelDisplay;
+    public static float smashPower = 0;
 
-  public TMP_Text smashPowerDisplay;
+    public TMP_Text powerLevelDisplay;
 
-  public float jumpHeight;
+    public TMP_Text smashPowerDisplay;
 
-  public Transform vrCamera;
+    public float jumpHeight;
 
-  //public Vector3 jump;
-  public bool currentlyJumping;
+    public Transform vrCamera;
 
-  public int jumpState;
+    //public Vector3 jump;
+    public bool currentlyJumping;
 
-  public AudioSource runSFX;
-  public AudioSource jumpSFX;
+    public int jumpState;
 
-  bool jumpAudioPlaying = false;
+    public AudioSource runSFX;
+    public AudioSource jumpSFX;
 
-  public static event Action<int> OnJumpStateChanged;
+    bool jumpAudioPlaying = false;
 
-  void Update(){
+    public static event Action<int> OnJumpStateChanged;
 
-    // Set power level display text
-    powerLevelDisplay.text = powerLevel.ToString();
-    
-    if (powerLevel == 0){
-      smashPowerDisplay.text = "OFF";
-      smashPowerDisplay.color = Color.red;
+    void Update()
+    {
+
+        // Set power level display text
+        // // powerLevelDisplay.text = powerLevel.ToString();
+        // Debug.Log("Timer: " + powerLevelTimer.ToString("00"));
+
+        if (powerLevel == 0)
+        {
+            powerLevelDisplay.text = "OFF";
+            powerLevelDisplay.color = Color.red;
+            jumpRatio = 2;
+        }
+        else
+        {
+            powerLevelDisplay.text = "0:" + powerLevelTimer.ToString("00");//string.Format("{0:N2}", powerLevelTimer/100);
+            powerLevelDisplay.color = Color.green;
+            jumpRatio = 10;
+            powerLevelTimer -= Time.deltaTime;
+            // reset timer and remove powerup
+            if (powerLevelTimer <= 0f)
+            {
+                powerLevel = 0;
+                powerLevelTimer = 15f;
+            }
+        }
+
+        // jumpRatio = powerLevel + 1;
+
+        if (smashPower == 0)
+        {
+            smashPowerDisplay.text = "OFF";
+            smashPowerDisplay.color = Color.red;
+        }
+        else
+        {
+            smashPowerDisplay.text = "ON";
+            smashPowerDisplay.color = Color.green;
+        }
+
+        /*if (jumpState >= 3 && jumpState < 8){
+          currentlyJumping = true;
+
+          if (! jumpAudioPlaying){
+            runSFX.Stop();
+            jumpSFX.Play();
+            jumpAudioPlaying = true;
+          }
+        }
+
+        else {
+          if (jumpAudioPlaying){
+            runSFX.Play();
+            jumpAudioPlaying = false;
+          }
+          currentlyJumping = false;
+
+        }*/
     }
-    else{
-      smashPowerDisplay.text = "ON";
-      smashPowerDisplay.color = Color.green;
-      jumpRatio = 10;
-    }
 
-    // jumpRatio = powerLevel + 1;
-
-    if (smashPower == 0){
-      smashPowerDisplay.text = "OFF";
-      smashPowerDisplay.color = Color.red;
-    }
-    else{
-      smashPowerDisplay.text = "ON";
-      smashPowerDisplay.color = Color.green;
-    }
-
-    /*if (jumpState >= 3 && jumpState < 8){
-      currentlyJumping = true;
-      
-      if (! jumpAudioPlaying){
-        runSFX.Stop();
-        jumpSFX.Play();
-        jumpAudioPlaying = true;
-      }
-    }
-
-    else {
-      if (jumpAudioPlaying){
-        runSFX.Play();
-        jumpAudioPlaying = false;
-      }
-      currentlyJumping = false;
-      
-    }*/
-  }
-
-   public void updateJumpState (int newState){
+    public void updateJumpState(int newState)
+    {
         jumpState = newState;
 
-        switch (newState){
+        switch (newState)
+        {
             case 1:
                 break;
 
@@ -95,36 +113,36 @@ public class JumpController : MonoBehaviour
                 break;
 
             case 3:
-              currentlyJumping = true;
-              runSFX.Stop();
-              jumpSFX.Play();
-              break;
+                currentlyJumping = true;
+                runSFX.Stop();
+                jumpSFX.Play();
+                break;
 
             case 8:
             case 9:
-              currentlyJumping = false;
-              runSFX.Play();
-              break;
+                currentlyJumping = false;
+                runSFX.Play();
+                break;
         }
         OnJumpStateChanged?.Invoke(newState);
     }
 
 
-  // This function uses jump physics
-  public void jump()
-  {
-    Debug.Log("Power Level: " + powerLevel);
-    jumpRatio = 1 + (powerLevel * powerLevelBonus);
-    Debug.Log("Jump Ratio: " + jumpRatio);
+    // This function uses jump physics
+    public void jump()
+    {
+        Debug.Log("Power Level: " + powerLevel);
+        jumpRatio = 1 + (powerLevel * powerLevelBonus);
+        Debug.Log("Jump Ratio: " + jumpRatio);
 
-    float jumpSpeed = Mathf.Sqrt(2 * jumpHeight * 9.81f * jumpRatio);
-    GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.VelocityChange);
+        float jumpSpeed = Mathf.Sqrt(2 * jumpHeight * 9.81f * jumpRatio);
+        GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.VelocityChange);
 
 
 
-      //GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce * jumpRatio, ForceMode.Impulse);
-    
-  }
+        //GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce * jumpRatio, ForceMode.Impulse);
+
+    }
 
 
 }

@@ -49,17 +49,26 @@ public class VRMove : MonoBehaviour
     public float next_time;
     public bool flip = false;
 
+    // Sound stuff
+    public GameObject audioObjectFalling;
+    public AudioSource fallingFX;
+
     void Awake() {
         // Subscribe to game state change (this is used for start menu)
         GameManager.OnGameStateChanged += OnOnGameStateChanged;
+        JumpController.OnJumpStateChanged += OnOnJumpStateChanged;
     }
     public void Start()
     {
         CapCollider = GetComponent<CapsuleCollider>();
+
+        audioObjectFalling = GameObject.Find("FallingSound");
+        fallingFX = audioObjectFalling.GetComponent<AudioSource>();
     } 
 
     public void OnDestroy(){
         GameManager.OnGameStateChanged -= OnOnGameStateChanged;
+        JumpController.OnJumpStateChanged -= OnOnJumpStateChanged;
     }
 
 
@@ -70,6 +79,30 @@ public class VRMove : MonoBehaviour
                 break;
             case GameState.Running:
                 MovementSpeed = InitialMovementSpeed;
+                break;
+        }
+    }
+
+    private void OnOnJumpStateChanged (int jumpState){
+        switch (jumpState)
+        {
+            case 1:
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                InitialMovementSpeed = 0.01f;
+                MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
+                Debug.Log("Movement Speed:"+ MovementSpeed.ToString());
+                break;
+
+            case 8:
+            case 9:
+                InitialMovementSpeed = 4;
+                MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
+                Debug.Log("Movement Speed:"+ MovementSpeed.ToString());
                 break;
         }
     }
@@ -214,13 +247,13 @@ public class VRMove : MonoBehaviour
             shakeDuration -= Time.deltaTime * decreaseFactor;
 
             // haptic feedback 
-            if (Time.time > next_time) { 
-                if (flip) arduino.SendManual(-.1f, 50);
-                else arduino.SendManual(.1f, 50);
-                flip = !flip;
-                next_time = Time.time + 0.05f;
-                //Debug.Log("Flipping! " + next_time);
-        }
+            // if (Time.time > next_time) { 
+            //     if (flip) arduino.SendManual(-.1f, 50);
+            //     else arduino.SendManual(.1f, 50);
+            //     flip = !flip;
+            //     next_time = Time.time + 0.05f;
+            //     //Debug.Log("Flipping! " + next_time);
+            // }
         }
         else if (MudFX.walkingOnMud){
             InitialMovementSpeed = 10; // slow down speed of player
@@ -283,10 +316,11 @@ public class VRMove : MonoBehaviour
         {
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), true); // bypass all obstacles collider
         }
-        else if (collision.gameObject.tag == "Obstacle")
+        else if (collision.gameObject.tag == "Obstacle" && collision.gameObject.name != "pumkin")
         {          
             //If the GameObject has the same tag as specified, output this message in the console
             Debug.Log("Player collided with: " + collision.gameObject.name);
+            fallingFX.Play();
             shakeDuration = 1.5f;
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), true); // bypass all obstacles collider
         }

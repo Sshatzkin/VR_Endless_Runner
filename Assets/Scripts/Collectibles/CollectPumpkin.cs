@@ -5,7 +5,9 @@ using UnityEngine;
 public class CollectPumpkin : MonoBehaviour
 {
     public GameObject audioObject;
+    public GameObject audioObjectBoing;
     public AudioSource pumpkinFX;
+    public AudioSource boingFX;
 
     public JumpController jumpController;
 
@@ -16,6 +18,8 @@ public class CollectPumpkin : MonoBehaviour
     {
         audioObject = GameObject.Find("PumpkinCollect");
         pumpkinFX = audioObject.GetComponent<AudioSource>();
+        audioObjectBoing = GameObject.Find("BoingSound");
+        boingFX = audioObjectBoing.GetComponent<AudioSource>();
     }
     
     void OnTriggerEnter(Collider other)
@@ -29,7 +33,8 @@ public class CollectPumpkin : MonoBehaviour
         }
         else{
             // no powerup, consider this as normal obstacle
-            VRMove.shakeDuration = 1.5f;
+            // VRMove.shakeDuration = 1.5f;
+            boingFX.Play();
             Physics.IgnoreCollision(other, GetComponent<Collider>(), true);
             Debug.Log("No Pumpkin smashed");
         }
