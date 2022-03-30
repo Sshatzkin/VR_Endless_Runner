@@ -282,7 +282,7 @@ PrefabInstance:
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 360
+      value: -560
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -323,6 +323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Strip Field (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761981295010, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -1106,6 +1111,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 91529472}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &95207389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+    type: 3}
+  m_PrefabInstance: {fileID: 233821114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &100864972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1727,7 +1738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1735,7 +1746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1747,7 +1758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1756,11 +1767,11 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1078288552}
+      objectReference: {fileID: 1743204865}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 585850559}
+      objectReference: {fileID: 1461604545}
     - target: {fileID: 1000014254142504, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -7116,7 +7127,7 @@ PrefabInstance:
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 300
+      value: -620
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -7157,6 +7168,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Strip Field (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761981295010, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -9854,7 +9870,7 @@ PrefabInstance:
     - target: {fileID: 3805537259196905237, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 540
+      value: -380
       objectReference: {fileID: 0}
     - target: {fileID: 3805537259196905237, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
@@ -9895,6 +9911,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Strip Barn (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805537259196905242, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3805537259752081957, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
@@ -10282,170 +10303,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 579953811}
   m_PrefabAsset: {fileID: 0}
---- !u!43 &585850559
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 10
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1001 &586123258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11027,7 +10884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &675973653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17454,6 +17311,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arduino: {fileID: 1101028947}
+--- !u!1 &820839605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3805537259196905242, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1782899288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &844815275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18534,6 +18397,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 37ed79ddef95de84d8f6ac8dddcb1f7e,
     type: 3}
   m_PrefabInstance: {fileID: 1111798349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &975008669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1086426867}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &979548318
 PrefabInstance:
@@ -24136,12 +24005,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1782899288}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1031110279 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3805537259196905242, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
-    type: 3}
-  m_PrefabInstance: {fileID: 3805537260179589533}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1031110280 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3805537259196905237, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
@@ -24605,6 +24468,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37ed79ddef95de84d8f6ac8dddcb1f7e, type: 3}
+--- !u!1 &1049412781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3805537259196905242, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2026157671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1050567672
 GameObject:
   m_ObjectHideFlags: 0
@@ -25102,41 +24971,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8800775191331574688}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1078288552
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &1086426867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25232,7 +25066,7 @@ PrefabInstance:
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 600
+      value: -320
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -25273,6 +25107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Strip Field (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761981295010, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -25503,7 +25342,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101028941}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7052ba72017ab64e8fc8127200c795a, type: 3}
   m_Name: 
@@ -25538,18 +25377,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101028941}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d7b4dfea40500e44838b3d271149552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 140664868}
   segments:
-  - {fileID: 1031110279}
-  - {fileID: 3805537260379775908}
-  segment_flipped: 0001
+  - {fileID: 820839605}
+  - {fileID: 1672929816}
+  - {fileID: 1049412781}
+  - {fileID: 95207389}
+  - {fileID: 1607786971}
+  - {fileID: 1879705680}
+  - {fileID: 1986726041}
+  - {fileID: 975008669}
+  segment_flipped: 0001000101010001
   tileWidth: 60
   zPos: 120
   secNum: 0
+  segmentIndex: 0
   creatingSection: 0
 --- !u!114 &1101028945
 MonoBehaviour:
@@ -25702,7 +25549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc5f48af2cffd747a079fe8c632e2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: \\\\.\\COM13
+  portName: COM8
   baudRate: 9600
   messageListener: {fileID: 1101028941}
   reconnectionDelay: 1000
@@ -37831,6 +37678,170 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8800775191132133756}
   m_PrefabAsset: {fileID: 0}
+--- !u!43 &1461604545
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!850595691 &1464589276
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -42967,7 +42978,7 @@ PrefabInstance:
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 180
+      value: -740
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -43008,6 +43019,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Strip Field (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761981295010, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -43323,6 +43339,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01b68a09f472a4733a1679324adc9dd3, type: 3}
+--- !u!1 &1607786971 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1787488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1613038624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43835,6 +43857,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1662706068}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1672929816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1580751590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1677522562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44245,7 +44273,7 @@ PrefabInstance:
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 480
+      value: -440
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -44286,6 +44314,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Strip Field (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761981295010, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -44591,6 +44624,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef67ff99e8d45e94691526446eab8c2f, type: 3}
+--- !u!21 &1743204865
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1001 &1752568316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44660,10 +44728,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 23000012464294094, guid: 01b68a09f472a4733a1679324adc9dd3,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23000012464294094, guid: 01b68a09f472a4733a1679324adc9dd3,
+        type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 135161117728798782, guid: 01b68a09f472a4733a1679324adc9dd3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 01b68a09f472a4733a1679324adc9dd3, type: 3}
 --- !u!1001 &1753617230
 PrefabInstance:
@@ -45096,7 +45170,7 @@ PrefabInstance:
     - target: {fileID: 3805537259196905237, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 120
+      value: -800
       objectReference: {fileID: 0}
     - target: {fileID: 3805537259196905237, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
@@ -45137,6 +45211,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Strip Barn (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805537259196905242, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3805537259752081957, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
@@ -46639,6 +46718,12 @@ MonoBehaviour:
   mudFX: {fileID: 0}
   mudPS: {fileID: 0}
   jumpController: {fileID: 0}
+--- !u!1 &1879705680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1708196613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1887068003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47316,6 +47401,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1963170558}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1986726041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3805537259196905242, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 541111301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1988349247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47816,7 +47907,7 @@ PrefabInstance:
     - target: {fileID: 3805537259196905237, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 240
+      value: -680
       objectReference: {fileID: 0}
     - target: {fileID: 3805537259196905237, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
@@ -47857,6 +47948,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Strip Barn (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805537259196905242, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3805537259752081957, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
@@ -48145,7 +48241,7 @@ PrefabInstance:
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 420
+      value: -500
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761473295506, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -48186,6 +48282,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Strip Field (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350596761981295010, guid: 7745709b7015d474bb47cbd12301ffe2,
         type: 3}
@@ -55720,12 +55821,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14e21a3dd86f6c4baaad8d4649dcfd8, type: 3}
---- !u!1 &3805537260379775908 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6350596761473295517, guid: 7745709b7015d474bb47cbd12301ffe2,
-    type: 3}
-  m_PrefabInstance: {fileID: 7849248456293975865}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3866905304047330947
 PrefabInstance:
   m_ObjectHideFlags: 0

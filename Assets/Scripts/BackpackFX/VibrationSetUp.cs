@@ -24,7 +24,7 @@ public class VibrationSetUp : MonoBehaviour
             }
             flip = !flip;
 
-            Debug.Log("Flipping! " + next_time);
+            //Debug.Log("Flipping! " + next_time);
         }
     }
 

@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.vrendlessrunner.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\hcilab\\Documents\\Romain\\JumpAR\\VR_Endless_Runner\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\hcilab\\Desktop\\romain\\VR_Endless_Runner\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "VR Endless Runner [Testing]"

@@ -219,7 +219,7 @@ public class VRMove : MonoBehaviour
                 else arduino.SendManual(.1f, 50);
                 flip = !flip;
                 next_time = Time.time + 0.05f;
-                Debug.Log("Flipping! " + next_time);
+                //Debug.Log("Flipping! " + next_time);
         }
         }
         else if (MudFX.walkingOnMud){

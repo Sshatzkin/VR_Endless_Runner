@@ -10,7 +10,7 @@ public class ParticleController : MonoBehaviour
     {
         if (collision.gameObject.name == "Ground Plane")
         {
-            Debug.Log("Landng on the ground!!");
+            //Debug.Log("Landng on the ground!!");
             CreateDust();
         }
     }    
