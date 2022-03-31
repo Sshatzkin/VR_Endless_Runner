@@ -68,6 +68,7 @@ public class SerialController : MonoBehaviour
                                              reconnectionDelay,
                                              maxUnreadMessages);
         thread = new Thread(new ThreadStart(serialThread.RunForever));
+        thread.Priority = System.Threading.ThreadPriority.Highest;
         thread.Start();
     }
 

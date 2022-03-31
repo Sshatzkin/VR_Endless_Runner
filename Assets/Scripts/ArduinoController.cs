@@ -46,7 +46,9 @@ public class ArduinoController : MonoBehaviour
             // init backpack
             SetMode();
             // SetWeightBottom();
-            SendManual(20,1500);
+            // SendManual(20,1500);
+            SetDriveTime(0, 100);
+            Disarm();
             
         }
             

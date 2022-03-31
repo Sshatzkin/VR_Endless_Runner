@@ -98,6 +98,7 @@ public class VRMove : MonoBehaviour
 
             case 3:
                 InitialMovementSpeed = 0.01f;
+                maxSpeed = 25f;
                 MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
                 Debug.Log("Movement Speed:"+ MovementSpeed.ToString());
                 break;
@@ -105,6 +106,7 @@ public class VRMove : MonoBehaviour
             case 8:
             case 9:
                 InitialMovementSpeed = 4;
+                maxSpeed = 20f;
                 MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
                 Debug.Log("Movement Speed:"+ MovementSpeed.ToString());
                 break;

@@ -52,7 +52,7 @@ public class JumpController : MonoBehaviour
         {
             powerLevelDisplay.text = "OFF";
             powerLevelDisplay.color = Color.red;
-            jumpRatio = 2;
+            jumpRatio = 2.5F;
         }
         else
         {
@@ -80,25 +80,6 @@ public class JumpController : MonoBehaviour
             smashPowerDisplay.text = "ON";
             smashPowerDisplay.color = Color.green;
         }
-
-        /*if (jumpState >= 3 && jumpState < 8){
-          currentlyJumping = true;
-
-          if (! jumpAudioPlaying){
-            runSFX.Stop();
-            jumpSFX.Play();
-            jumpAudioPlaying = true;
-          }
-        }
-
-        else {
-          if (jumpAudioPlaying){
-            runSFX.Play();
-            jumpAudioPlaying = false;
-          }
-          currentlyJumping = false;
-
-        }*/
     }
 
     public void updateJumpState(int newState)

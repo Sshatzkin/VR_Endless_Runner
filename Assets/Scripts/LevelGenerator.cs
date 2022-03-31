@@ -13,7 +13,7 @@ public class LevelGenerator : MonoBehaviour
     public int zPos = 60;
     public int secNum;
     public int segmentIndex = 0;
-    private static int[] segmentOrder = new int[] {1, 2, 5, 6, 3, 7, 8, 4}; // order for auto generator
+    private static int[] segmentOrder = new int[] {1, 2, 5, 6, 3, 7, 8, 4, 1, 2, 5, 6, 3, 7, 8, 4}; // order for auto generator
 
 
     public int interruptSegmentFor = 0;
