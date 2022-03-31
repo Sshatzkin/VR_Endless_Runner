@@ -13,10 +13,12 @@ public class LevelGenerator : MonoBehaviour
     public int zPos = 60;
     public int secNum;
     public int segmentIndex = 0;
+    private static int[] segmentOrder = new int[] {1, 2, 5, 6, 3, 7, 8, 4}; // order for auto generator
 
 
-    public bool spawnCookieNext = false;
-    public bool creatingSection = false;
+    public int interruptSegmentFor = 0;
+    private int newSegmentIndex;
+    public bool creatingSection = false; // stall the auto generator
 
     // Update is called once per frame
     void Update()
@@ -27,9 +29,40 @@ public class LevelGenerator : MonoBehaviour
             StartCoroutine(CreateSection());
         }
 
-        if (Input.GetKeyDown(KeyCode.Return)) // "ENTER" key
+        if (Input.GetKeyDown(KeyCode.Keypad0)) // "0" key = cookie
         {
-            spawnCookieNext = true;
+            interruptSegmentFor = 1;
+            newSegmentIndex = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad1)) // "1" key = strip 1
+        {
+            interruptSegmentFor = 1;
+            newSegmentIndex = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2)) // "2" key = strip 2
+        {
+            interruptSegmentFor = 1;
+            newSegmentIndex = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3)) // "3" key = wind - strip 3
+        {
+            interruptSegmentFor = 1;
+            newSegmentIndex = 3;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4)) // "4" key = mud landing - strip 4
+        {
+            interruptSegmentFor = 1;
+            newSegmentIndex = 4;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5)) // "5" key = jump boost strips, combines strip 5 and 6
+        {
+            interruptSegmentFor = 2;
+            newSegmentIndex = 5;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad6)) // "6" key = pumpkin strips, combines 7 and 8
+        {
+            interruptSegmentFor = 2;
+            newSegmentIndex = 7;
         }
     }
 
@@ -40,28 +73,37 @@ public class LevelGenerator : MonoBehaviour
         //secNum = Random.Range(0, segments.Length);
 
         // Create a new section
-        if (spawnCookieNext)
+        if (interruptSegmentFor > 0)
         {
-            int x_offset = 8;
-            int y_rotation = 180;
-            GameObject newSection = Instantiate(cookieSegment, new Vector3(x_offset, 0, zPos), Quaternion.identity);
+            int x_offset = 0;
+            float y_rotation = 0;
+            if (segment_flipped[newSegmentIndex])
+            {
+                x_offset += 8;
+                y_rotation = 180.0f;
+            }
+
+            GameObject newSection = Instantiate(segments[newSegmentIndex], new Vector3(x_offset, 0, zPos), Quaternion.identity);
             newSection.transform.eulerAngles = new Vector3(0, y_rotation, 0);
+
             zPos += tileWidth;
-            spawnCookieNext = false;
+            interruptSegmentFor--;
+            newSegmentIndex++;
+
         }
-        else
+        else // runs normal order
         {
             //int seg_number = Random.Range(0, segments.Length);
             int x_offset = 0;
             float y_rotation = 0;
-            if (segment_flipped[segmentIndex])
+            if (segment_flipped[segmentOrder[segmentIndex]])
             {
                 x_offset += 8;
                 y_rotation = 180.0f;
             }
             //Quaternion rotation = new Quaternion (0, y_rotation, 0, 1);
 
-            GameObject newSection = Instantiate(segments[segmentIndex], new Vector3(x_offset, 0, zPos), Quaternion.identity);//rotation);
+            GameObject newSection = Instantiate(segments[segmentOrder[segmentIndex]], new Vector3(x_offset, 0, zPos), Quaternion.identity);//rotation);
             newSection.transform.eulerAngles = new Vector3(0, y_rotation, 0);
 
             zPos += tileWidth;
@@ -72,6 +114,7 @@ public class LevelGenerator : MonoBehaviour
 
         // Wait for a bit
         yield return new WaitForSeconds(8);
+        // yield return true;
 
         // Create a new section
         creatingSection = false;
