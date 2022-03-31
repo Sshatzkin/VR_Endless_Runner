@@ -22,7 +22,7 @@ public class WindController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        arduino.SetWeightTop();
+        // arduino.SetWeightTop();
         arduino.SetDCTime(50, 150);
         arduino.SetDriveTime(8,10);
         arduino.Arm();
@@ -30,12 +30,17 @@ public class WindController : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (jumpController.jumpState >= 6)
+        if (jumpController.jumpState >= 3)
         {
             Debug.Log("Wind zone entered");
             CreateWind();
             Destroy(gameObject);
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        arduino.Disarm();
     }
 
     void CreateWind()

@@ -12,11 +12,14 @@ public class MudFX : MonoBehaviour
     public JumpController jumpController;
 
     public static bool walkingOnMud = false;
+
+    public Renderer crackedGroundRenderer;
     // Start
     void Start()
     {
-        audioObject = GameObject.Find("MudSound");
+        // audioObject = GameObject.Find("EarthquakeSound");
         mudFX = audioObject.GetComponent<AudioSource>();
+        crackedGroundRenderer.enabled = false;
     }
     
     void OnTriggerEnter(Collider other)
@@ -24,6 +27,7 @@ public class MudFX : MonoBehaviour
         mudFX.Play();
         walkingOnMud = true;
         Debug.Log("Walking on mud");
+        crackedGroundRenderer.enabled = true;
     }
 
     void OnTriggerStay(Collider other)

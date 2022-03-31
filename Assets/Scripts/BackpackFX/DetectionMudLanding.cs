@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectionMud : MonoBehaviour
+public class DetectionMudLanding : MonoBehaviour
 {
     public JumpController jumpController;
     public ArduinoController arduino;

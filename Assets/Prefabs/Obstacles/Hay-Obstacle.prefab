@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4323614896692482630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.53, y: 0.1602812, z: 30.73}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.90454, z: 0.80731}
   m_Children:
   - {fileID: 1544060027587102944}
   - {fileID: 8339027227739337597}
@@ -44,13 +44,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: hay-cube
       objectReference: {fileID: 0}
+    - target: {fileID: 1867452316421566, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8900003
+      value: -2.332
       objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_LocalPosition.y
@@ -88,6 +92,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
 --- !u!4 &1544060027587102944 stripped
@@ -107,13 +131,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: hay-cube (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1867452316421566, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.566
       objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_LocalPosition.y
@@ -149,6 +177,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -170,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hay-cube (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1867452316421566, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -184,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.32999992
+      value: -0.008
       objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_LocalRotation.w
@@ -212,6 +264,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4182302196714794, guid: 62b290ae36c1b4dfe99c7f8c4498af69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 65424448779592946, guid: 62b290ae36c1b4dfe99c7f8c4498af69,
+        type: 3}
+      propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -20,6 +20,7 @@ public class DetectionJumpBoost : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         arduino.Disarm();
+        Debug.Log("Disabling jumpboost");
     }
 }
 

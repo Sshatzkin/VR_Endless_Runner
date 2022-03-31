@@ -15,7 +15,8 @@ public class JumpController : MonoBehaviour
 
     public float powerLevelBonus = 1f;
     public static float powerLevel = 0;
-    public static float powerLevelTimer = 15f; // roughly the same as the detection zone
+    public static float powerLevelTimer = 25f; // roughly the same as the detection zone
+    private static float powerLevelCountdown = powerLevelTimer;
 
 
     public static float smashPower = 0;
@@ -55,15 +56,15 @@ public class JumpController : MonoBehaviour
         }
         else
         {
-            powerLevelDisplay.text = "0:" + powerLevelTimer.ToString("00");//string.Format("{0:N2}", powerLevelTimer/100);
+            powerLevelDisplay.text = "0:" + powerLevelCountdown.ToString("00");//string.Format("{0:N2}", powerLevelTimer/100);
             powerLevelDisplay.color = Color.green;
             jumpRatio = 10;
-            powerLevelTimer -= Time.deltaTime;
+            powerLevelCountdown -= Time.deltaTime;
             // reset timer and remove powerup
-            if (powerLevelTimer <= 0f)
+            if (powerLevelCountdown <= 0f)
             {
                 powerLevel = 0;
-                powerLevelTimer = 15f;
+                powerLevelCountdown = powerLevelTimer;
             }
         }
 

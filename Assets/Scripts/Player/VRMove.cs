@@ -64,6 +64,10 @@ public class VRMove : MonoBehaviour
 
         audioObjectFalling = GameObject.Find("FallingSound");
         fallingFX = audioObjectFalling.GetComponent<AudioSource>();
+
+        
+        arduino.SendManual(20,1500);
+        arduino.Disarm();
     } 
 
     public void OnDestroy(){
@@ -257,6 +261,8 @@ public class VRMove : MonoBehaviour
         }
         else if (MudFX.walkingOnMud){
             InitialMovementSpeed = 10; // slow down speed of player
+            shakeDuration = 2;
+
         }
         else
         {
