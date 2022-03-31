@@ -45638,7 +45638,7 @@ PrefabInstance:
     - target: {fileID: 1155650916081425964, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1194128318040685797, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
@@ -45919,6 +45919,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -4.8490953
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937456046667579766, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6937456046667579769, guid: e14e21a3dd86f6c4baaad8d4649dcfd8,
         type: 3}
@@ -75678,6 +75683,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mud
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943513706795531110, guid: c20545d5021f02b49b94a6a710f410b2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3108106005950748947, guid: c20545d5021f02b49b94a6a710f410b2,
         type: 3}
