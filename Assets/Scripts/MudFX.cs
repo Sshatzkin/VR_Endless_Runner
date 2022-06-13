@@ -10,6 +10,8 @@ public class MudFX : MonoBehaviour
     public ParticleSystem mudPS;
 
     public JumpController jumpController;
+    
+    public ArduinoController arduino;
 
     public static bool walkingOnMud = false;
 
@@ -40,5 +42,6 @@ public class MudFX : MonoBehaviour
         mudFX.Stop();
         mudPS.Stop();
         walkingOnMud = false;
+        arduino.Disarm();
     }
 }
