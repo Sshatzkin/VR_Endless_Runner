@@ -8,6 +8,7 @@ public class CollectPumpkin : MonoBehaviour
     public GameObject audioObjectBoing;
     public AudioSource pumpkinFX;
     public AudioSource boingFX;
+    public GameObject brokenPumpkin;
 
     public JumpController jumpController;
 
@@ -26,8 +27,10 @@ public class CollectPumpkin : MonoBehaviour
     {
         if (JumpController.smashPower > 0 && jumpController.jumpState >=3 && jumpController.jumpState < 9)
         {
+            JumpController.smashPower--;
             pumpkinFX.Play();
             CollectibleController.pumpkinCount++;
+            Instantiate(brokenPumpkin, transform.position, transform.rotation);
             Destroy(gameObject);
             Debug.Log("Pumpkin smashed");
         }
@@ -36,7 +39,7 @@ public class CollectPumpkin : MonoBehaviour
             // VRMove.shakeDuration = 1.5f;
             boingFX.Play();
             Physics.IgnoreCollision(other, GetComponent<Collider>(), true);
-            Debug.Log("No Pumpkin smashed");
+            Debug.Log("No pumpkin smashed");
         }
     }
 

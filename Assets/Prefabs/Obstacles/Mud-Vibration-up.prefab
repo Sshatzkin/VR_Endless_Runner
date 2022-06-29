@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.568, y: 0.09, z: 51.85}
   m_LocalScale: {x: 0.35, y: 1, z: 0.44}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 164172033669579312}
   m_Father: {fileID: 0}
@@ -55,6 +56,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -111,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arduino: {fileID: 0}
+  defaultDown: 0
 --- !u!114 &2436572966428888190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +129,9 @@ MonoBehaviour:
   audioObject: {fileID: 0}
   mudFX: {fileID: 0}
   mudPS: {fileID: 0}
+  particleScale: 0
   jumpController: {fileID: 0}
+  arduino: {fileID: 0}
   crackedGroundRenderer: {fileID: 151083920023507460}
 --- !u!1001 &164790839309205246
 PrefabInstance:
@@ -199,15 +204,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 65000010389506744, guid: 4aab21f2799d58846ae653e61cee2ca9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4aab21f2799d58846ae653e61cee2ca9, type: 3}
---- !u!4 &164172033669579312 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4000012223560910, guid: 4aab21f2799d58846ae653e61cee2ca9,
-    type: 3}
-  m_PrefabInstance: {fileID: 164790839309205246}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &151083920023507460 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 23000011428408570, guid: 4aab21f2799d58846ae653e61cee2ca9,
+    type: 3}
+  m_PrefabInstance: {fileID: 164790839309205246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &164172033669579312 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000012223560910, guid: 4aab21f2799d58846ae653e61cee2ca9,
     type: 3}
   m_PrefabInstance: {fileID: 164790839309205246}
   m_PrefabAsset: {fileID: 0}

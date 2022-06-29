@@ -13,6 +13,8 @@ public class JumpController : MonoBehaviour
     public float jumpForce = 10f;
     public float jumpRatio = 1f;
 
+    public bool video = false;
+    private float videoPowerLevelTimer = 5f;
     public float powerLevelBonus = 1f;
     public static float powerLevel = 0;
     public static float powerLevelTimer = 25f; // roughly the same as the detection zone
@@ -40,7 +42,15 @@ public class JumpController : MonoBehaviour
     bool jumpAudioPlaying = false;
 
     public static event Action<int> OnJumpStateChanged;
+    public float jumpTimeElapsed = 0f;
 
+    void Start() {
+        if(video) {
+            powerLevelTimer = videoPowerLevelTimer;
+            powerLevelCountdown = powerLevelTimer;
+            smashPower = 1;
+        }
+    }
     void Update()
     {
 
@@ -52,13 +62,21 @@ public class JumpController : MonoBehaviour
         {
             powerLevelDisplay.text = "OFF";
             powerLevelDisplay.color = Color.red;
+            if(jumpRatio != 2.5f) {
+                Debug.Log("Ratio: 2.5");
+            }
             jumpRatio = 2.5F;
         }
         else
         {
             powerLevelDisplay.text = "0:" + powerLevelCountdown.ToString("00");//string.Format("{0:N2}", powerLevelTimer/100);
             powerLevelDisplay.color = Color.green;
+            if(jumpRatio != 10) {
+                Debug.Log("Ratio: 10");
+                jumpTimeElapsed = 1;
+            }
             jumpRatio = 10;
+            jumpTimeElapsed -= Time.deltaTime;
             powerLevelCountdown -= Time.deltaTime;
             // reset timer and remove powerup
             if (powerLevelCountdown <= 0f)
@@ -89,18 +107,14 @@ public class JumpController : MonoBehaviour
         switch (newState)
         {
             case 1:
+                currentlyJumping = false;
+                runSFX.Play();
                 break;
-
-            case 2:
-                break;
-
             case 3:
                 currentlyJumping = true;
                 runSFX.Stop();
                 jumpSFX.Play();
                 break;
-
-            case 8:
             case 9:
                 currentlyJumping = false;
                 runSFX.Play();

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8182201178160973689}
   - component: {fileID: 8182201178159842745}
   - component: {fileID: 5995307146319863183}
+  - component: {fileID: 6240780423102452695}
   m_Layer: 0
   m_Name: Cow-Obstacle
   m_TagString: Obstacle
@@ -29,6 +30,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0.93961394, z: -0, w: 0.3422363}
   m_LocalPosition: {x: 5.58, y: 0.39199257, z: 0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -99,3 +102,19 @@ CapsuleCollider:
   m_Height: 1.8231806
   m_Direction: 1
   m_Center: {x: -0.00000017881393, y: 0.8963948, z: 0.22871596}
+--- !u!114 &6240780423102452695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8182201178162109305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a906f862613e348aa9b80bc6476a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaRotation: 5
+  deltaPosition: {x: 0, y: 0.7625, z: 0}
+  velocity: 5
+  decelleration: 1

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2992174204699633784}
   - component: {fileID: 2992174204696217806}
   - component: {fileID: 2992174204697615052}
+  - component: {fileID: 1088737188595636748}
   - component: {fileID: 81492903549838988}
   m_Layer: 0
   m_Name: Fence-Obstacle
@@ -28,7 +29,8 @@ Transform:
   m_GameObject: {fileID: 2992174204699333746}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.39, y: -0.029, z: -2.82}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.3, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -84,6 +87,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1088737188595636748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992174204699333746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a906f862613e348aa9b80bc6476a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deltaRotation: 5
+  deltaPosition: {x: 0, y: 0.845, z: 0}
+  velocity: 5
+  decelleration: 1
 --- !u!64 &81492903549838988
 MeshCollider:
   m_ObjectHideFlags: 0

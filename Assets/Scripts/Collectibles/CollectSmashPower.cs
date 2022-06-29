@@ -19,7 +19,7 @@ public class CollectSmashPower : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         boostFX.Play();
-        JumpController.smashPower++;
+        JumpController.smashPower += 2;
         // arduino.SetWeightTop();
         arduino.SendManual(-.3f, 1000);
         arduino.SetDCTime(50, 150);

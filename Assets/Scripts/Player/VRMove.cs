@@ -43,7 +43,10 @@ public class VRMove : MonoBehaviour
     public static float shakeDuration = 0f;     // How long the object should shake for.
     public float shakeAmount = 2f;              // Amplitude of the shake. A larger value shakes the camera harder.
     public float decreaseFactor = 1.0f;
+    public GameObject ghost;
+    public float ghostShakeAmount;
     public Quaternion originalRotation;         // Store camera rotation before shaking
+    public bool justShook = false;
 
     // Vibration haptics stuff
     public float next_time;
@@ -52,6 +55,10 @@ public class VRMove : MonoBehaviour
     // Sound stuff
     public GameObject audioObjectFalling;
     public AudioSource fallingFX;
+
+    public bool started = false;
+    public bool rotationChanged = false;
+    public Vector3 noVRCameraPosition;
 
     void Awake() {
         // Subscribe to game state change (this is used for start menu)
@@ -64,6 +71,7 @@ public class VRMove : MonoBehaviour
 
         audioObjectFalling = GameObject.Find("FallingSound");
         fallingFX = audioObjectFalling.GetComponent<AudioSource>();
+        originalRotation = Head.transform.localRotation;
 
         
         arduino.SendManual(20,1500);
@@ -91,19 +99,17 @@ public class VRMove : MonoBehaviour
         switch (jumpState)
         {
             case 1:
+                InitialMovementSpeed = 4;
+                maxSpeed = 20f;
+                MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
+                Debug.Log("Movement Speed:"+ MovementSpeed.ToString());
                 break;
-
-            case 2:
-                break;
-
-            case 3:
+            case 4:
                 InitialMovementSpeed = 0.01f;
                 maxSpeed = 25f;
                 MovementSpeed = timeToSpeed(InitialMovementSpeed, GameManager.Instance.time, speedIncreaseRatio, maxSpeed);
                 Debug.Log("Movement Speed:"+ MovementSpeed.ToString());
                 break;
-
-            case 8:
             case 9:
                 InitialMovementSpeed = 4;
                 maxSpeed = 20f;
@@ -116,6 +122,16 @@ public class VRMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!started && transform.eulerAngles != Vector3.zero) {
+            rotationChanged = true;
+        }
+        if(!started && MovementSpeed != 0) {
+            started = true;
+            if(!rotationChanged) {
+                Head.transform.localEulerAngles = Vector3.zero;
+                Head.transform.position = noVRCameraPosition;
+            }
+        }
         updateInput();
         updateCollider();
         
@@ -155,6 +171,7 @@ public class VRMove : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
+                        playerHeight = Head.transform.position.y;
                         Debug.Log("Starting Game");
                         GameManager.Instance.updateGameState(GameState.Running);
                     }
@@ -198,10 +215,10 @@ public class VRMove : MonoBehaviour
 
                 //transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
 
-                if (!jumpController.currentlyJumping)
-                {
-                    playerHeight = Head.transform.position.y;
-                }
+                // if (!jumpController.currentlyJumping && jumpController.jumpState == 1)
+                // {
+                //     playerHeight = Head.transform.position.y;
+                // }
             }
 
             else
@@ -236,10 +253,10 @@ public class VRMove : MonoBehaviour
                     }
                 }
 
-                if (!jumpController.currentlyJumping)
-                {
-                    playerHeight = Head.transform.position.y;
-                }
+                // if (!jumpController.currentlyJumping)
+                // {
+                //     playerHeight = Head.transform.position.y;
+                // }
             }
         }
 
@@ -247,7 +264,12 @@ public class VRMove : MonoBehaviour
         if (shakeDuration > 0) // will need to check if is jumping or not by checking jump state
         {
             // shake camera by rotating camera
-            transform.rotation = originalRotation * Quaternion.Euler(Random.Range(-shakeAmount,shakeAmount),Random.Range(-shakeAmount,shakeAmount),0);
+            // justShook = true;
+            
+            // if(ghost != null) {
+            //     ghost.transform.rotation = originalRotation;
+            //     ghost.transform.rotation *= Quaternion.Euler(Random.Range(-ghostShakeAmount,ghostShakeAmount),Random.Range(-ghostShakeAmount,ghostShakeAmount),0);
+            // }
             InitialMovementSpeed = 10; // slow down speed of player
 
             shakeDuration -= Time.deltaTime * decreaseFactor;
@@ -269,7 +291,14 @@ public class VRMove : MonoBehaviour
         else
         {
             // used to restore angle
-            originalRotation = transform.localRotation;
+            // if(justShook) {
+            //     Head.transform.localRotation = originalRotation;
+            //     if(ghost != null) {
+            //         ghost.transform.rotation = originalRotation;
+            //     }
+            //     justShook = false;
+            // }
+            // originalRotation = Head.transform.localRotation;
             InitialMovementSpeed = 4; // restore speed of player
             shakeDuration = 0f;
         }
@@ -277,7 +306,7 @@ public class VRMove : MonoBehaviour
 
     /*
         This function uses logistic function of the form:
-        f(x) = c / 1 + ae^(-kx)
+        f(x) = c / (1 + ae^(-kx))
 
         With setting c = 20, a = 4, k = 0.01,  it starts at 4 movespeed and takes about 5 mins to get to 20
 
@@ -344,10 +373,7 @@ public class VRMove : MonoBehaviour
         GroundCount--;
         if (shakeDuration <= 0){
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>(), false); // restore all obstacles collider
-            transform.rotation = originalRotation; 
         }
-
-        
     }
 
     /*private void Jump (Rigidbody RBody)

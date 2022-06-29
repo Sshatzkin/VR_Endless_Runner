@@ -10,7 +10,6 @@ using UnityEngine;
 using System.Collections;
 using System.Threading;
 using System;
-
 /**
  * When creating your message listeners you need to implement these two methods:
  *  - OnMessageArrived
@@ -18,7 +17,8 @@ using System;
  */
 public class ArduinoController : MonoBehaviour
 {
-    public SerialController serial;
+    public OSC_helper helper;
+    //public SerialController serial;
     public JumpController jumpController;
 
     private Thread vibrationThread;
@@ -26,8 +26,11 @@ public class ArduinoController : MonoBehaviour
     public bool isVibrating = false;
 
     // Invoked when a line of data is received from the serial device.
-    void OnMessageArrived(string msg)
+    void OnMessageArrived(OscMessage oscMessage)
     {
+        int keyLen = "/command ".Length;
+        string msg = oscMessage.ToString();
+        msg = msg.Substring(keyLen);
         Debug.Log("Message arrived: " + msg);
         if (msg.Length >= 15 && msg[0].Equals('J')) // Check if the incoming message is of the form "Jump Status = _"           
             jumpController.updateJumpState((int)Char.GetNumericValue(msg[14]));
@@ -37,81 +40,83 @@ public class ArduinoController : MonoBehaviour
     // Invoked when a connect/disconnect event occurs. The parameter 'success'
     // will be 'true' upon connection, and 'false' upon disconnection or
     // failure to connect.
-    void OnConnectionEvent(bool success)
-    {
-        if (success)
-        {
-            Debug.Log("Arduino connected!");
+    // void OnConnectionEvent(bool success)
+    // {
+    //     if (success)
+    //     {
+    //         Debug.Log("Arduino connected!");
 
-            // init backpack
-            SetMode();
-            // SetWeightBottom();
-            // SendManual(20,1500);
-            SetDriveTime(0, 100);
-            Disarm();
+    //         // init backpack
+    //         SetMode();
+    //         // SetWeightBottom();
+    //         // SendManual(20,1500);
+    //         SetDriveTime(0, 100);
+    //         Disarm();
             
-        }
+    //     }
             
-        else
-            Debug.Log("Connection attempt failed or disconnection detected");
-    }
+    //     else
+    //         Debug.Log("Connection attempt failed or disconnection detected");
+    // }
 
     // Arduino functions:
     public void SetMode()
     {
         string arduinoMsg = "<c,a>";
-        serial.SendSerialMessage(arduinoMsg);
+        helper.SendString(arduinoMsg);
     }
 
     public void Arm()
     {
         string arduinoMsg = "<p,1>";
-        // serial.SendSerialMessage(arduinoMsg);
-        serial.SendSerialMessage(arduinoMsg);
+        // helper.SendString(arduinoMsg);
+        helper.SendString(arduinoMsg);
+        Debug.Log("Armed");
     }
 
     public void Disarm()
     {
         string arduinoMsg = "<p,0>";
-        serial.SendSerialMessage(arduinoMsg);
+        helper.SendString(arduinoMsg);
+        Debug.Log("Disarmed");
     }
 
     public void SetDCTime(float dutyCycle, int driveTime)
     {
         if (Math.Abs(dutyCycle) > 1) dutyCycle = dutyCycle / 100;
         string arduinoMsg = "<s," + dutyCycle + "," + driveTime + ">";
-        serial.SendSerialMessage(arduinoMsg); 
+        helper.SendString(arduinoMsg); 
     }
 
     public void SetDriveTime(int start, int end)
     {
         string arduinoMsg = "<t," + start + "," + end + ">";
-        serial.SendSerialMessage(arduinoMsg); 
+        helper.SendString(arduinoMsg); 
     }
 
     public void SendManual(float dutyCycle, int driveTime)
     {
         if (Math.Abs(dutyCycle) > 1) dutyCycle = dutyCycle / 100;
         string arduinoMsg = "<" + dutyCycle + "," + driveTime + ">";
-        serial.SendSerialMessage(arduinoMsg); 
+        helper.SendString(arduinoMsg); 
     }
 
     public void SetWeightTop()
     {
         string arduinoMsg = "<-.3, 1500>";
-        serial.SendSerialMessage(arduinoMsg); 
+        helper.SendString(arduinoMsg); 
     }
 
     public void SetWeightBottom()
     {
         string arduinoMsg = "<.3, 2000>";
-        serial.SendSerialMessage(arduinoMsg); 
+        helper.SendString(arduinoMsg); 
     }
 
     public void SetWeightMiddle()
     {
         string arduinoMsg = "<-.1, 1000>";
-        serial.SendSerialMessage(arduinoMsg); 
+        helper.SendString(arduinoMsg); 
         Debug.Log("Setting weight to middle");
     }
 
@@ -120,12 +125,12 @@ public class ArduinoController : MonoBehaviour
         SetWeightMiddle();
         Thread.Sleep(1000);
         
-        Debug.Log("Start vibbing");
+        Debug.Log("Start vibrating");
         while(isVibrating)
         {
-            serial.SendSerialMessage("<"  + intensity + ", 100>"); 
+            helper.SendString("<"  + intensity + ", 100>"); 
             // Thread.Sleep(100);
-            serial.SendSerialMessage("<-" + intensity + ", 100>"); 
+            helper.SendString("<-" + intensity + ", 100>"); 
             // Thread.Sleep(100);
             Debug.Log("Vibbing!");
         }
@@ -153,5 +158,9 @@ public class ArduinoController : MonoBehaviour
         isVibrating = false;
         vibrationThread.Join();
         vibrationThread.Abort();
+    }
+
+    private void Start() {
+        helper.osc.SetAddressHandler("/command", OnMessageArrived);
     }
 }
